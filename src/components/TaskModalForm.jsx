@@ -18,14 +18,16 @@ const TaskModalForm = ({ boardId }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // console.log("Sending data:", { ...form, boardId }); // ⬅️ Add this
+
 
         try {
             const res = await axios.post(
-                `http://localhost:3000/api/tasks/POST/boards/${boardId}/tasks`,
+                `https://team-collaboration-board-backend.onrender.com/api/tasks/POST/boards/${boardId}/tasks`,
                 { ...form }
             );
+
             alert('Task created successfully!');
+
             setForm({
                 title: '',
                 description: '',
@@ -34,9 +36,11 @@ const TaskModalForm = ({ boardId }) => {
                 assignedTo: '',
                 dueDate: ''
             });
+
         } catch (error) {
             console.error(error);
             alert('Error creating task');
+
         }
     };
 

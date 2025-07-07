@@ -17,12 +17,16 @@ const BoardDetailPage = () => {
 
   const fetchTasks = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/api/tasks/GET/boards/${boardId}/tasks`);
+      const res = await axios.get(`https://team-collaboration-board-backend.onrender.com/api/tasks/GET/boards/${boardId}/tasks`);
       setTasks(res.data.data || res.data);
+
     } catch (err) {
       console.error("Error fetching tasks:", err);
+      alert('Failed to load tasks. Please try again later.');
+
     } finally {
       setLoading(false);
+      
     }
   };
 

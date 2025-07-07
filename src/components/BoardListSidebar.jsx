@@ -8,10 +8,12 @@ const BoardListSidebar = () => {
   useEffect(() => {
     const fetchBoards = async () => {
       try {
-        const res = await axios.get('http://localhost:3000/api/boards/GET/boards');
+        const res = await axios.get('https://team-collaboration-board-backend.onrender.com/api/boards/GET/boards');
         setBoards(res.data.data || res.data);
+
       } catch (err) {
         console.error("Failed to load boards:", err);
+        alert('Failed to load boards. Please try again later.');
       }
     };
 
@@ -23,10 +25,13 @@ const BoardListSidebar = () => {
     if (!name) return;
 
     try {
-      const res = await axios.post('http://localhost:3000/api/boards/POST/boards', { name });
+      const res = await axios.post('https://team-collaboration-board-backend.onrender.com/api/boards/POST/boards', { name });
       setBoards(prev => [...prev, res.data.data || res.data]);
+      alert('Board added successfully!');
+
     } catch (err) {
       console.error("Failed to add board:", err);
+      alert('Failed to add board. Please try again later.');
     }
   };
 

@@ -47,7 +47,7 @@ const EditDeleteTask = ({ task }) => {
             }
 
             const response = await axios.put(
-                `http://localhost:3000/api/tasks/PUT/tasks/${task._id}`,
+                `https://team-collaboration-board-backend.onrender.com/api/tasks/PUT/tasks/${task._id}`,
                 updateData
             );
 
@@ -57,6 +57,7 @@ const EditDeleteTask = ({ task }) => {
         } catch (err) {
             console.error("Error during task update:", err);
             alert('Failed to update task');
+
         }
     };
 
@@ -64,11 +65,13 @@ const EditDeleteTask = ({ task }) => {
     const handleDelete = async () => {
         if (!window.confirm('Are you sure you want to delete this task?')) return;
         try {
-            await axios.delete(`http://localhost:3000/api/tasks/DELETE/tasks/${task._id}`);
+            await axios.delete(`https://team-collaboration-board-backend.onrender.com/api/tasks/DELETE/tasks/${task._id}`);
             alert('Task deleted successfully');
+
         } catch (err) {
             console.error(err);
             alert('Failed to delete task');
+            
         }
     };
 
